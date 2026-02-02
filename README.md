@@ -1,0 +1,13 @@
+# Features
+- Login and Signup Page
+    - Signin/Signup Page
+- Browse Page(After Authentication)
+  - Header
+  - Main Movie
+    - Trailer in background
+    - Title and Desctiption and Play Button
+    - Movie Suggestions
+      - Movie List
+- Netflix GPT
+    - Search Bar
+    - Movie Suggestions  

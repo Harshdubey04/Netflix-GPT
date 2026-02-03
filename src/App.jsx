@@ -1,10 +1,15 @@
-import './App.css'
+import Header from "./Components/Header"
+import { Routes,Route} from "react-router"
+import Login from "./Pages/Login"
+import Browse from "./Pages/Browse"
 
 function App() {
   return (
-    <div className='font-bold'>
-      This is the app
-    </div>
+    <Routes>
+      <Route path="/" element={<Login/>}></Route>
+      <Route path="/browse" element={<Browse/>}></Route>
+    </Routes>
+    
   )
 }
 

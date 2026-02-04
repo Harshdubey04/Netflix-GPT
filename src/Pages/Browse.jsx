@@ -1,9 +1,10 @@
 import React from 'react'
+import BrowserHeader from '../Components/BrowserHeader'
 
 const Browse = () => {
   return (
     <div>
-      Browse Page
+      <BrowserHeader/>
     </div>
   )
 }

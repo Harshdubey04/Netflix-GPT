@@ -1,3 +1,19 @@
+
+-Routing of App
+-Login Form
+-Signup Form
+-From Validation
+-useRef Hook
+-Firebase Setup
+-Deploying our app
+-Creating Signup
+-Implement Signin and user API
+-Create Redux Store and UserSlice
+-Implement Signout 
+-Update Profile
+
+
+
 # Features
 - Login and Signup Page
     - Signin/Signup Page

@@ -6,6 +6,7 @@ import {auth} from "../Utils/Firebase";
 import { useNavigate } from 'react-router';
 import { addUser } from '../Utils/Store/userSlice';
 import { useDispatch } from 'react-redux';
+import { PROFILE_PHOTO,BG_IMG } from '../Utils/Constants';
 
 const Login = () => {
     const dispatch=useDispatch();
@@ -39,14 +40,12 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 seterrorMessage(errorCode+"-"+errorMessage);
             });
-            console.log("Sign In Successful");
         }
 
         // Sign Up flow
@@ -70,7 +69,7 @@ const Login = () => {
                 // User is created so update the profile
                 updateProfile(user, {
                     displayName: name.current.value, 
-                    photoURL: "https://media.licdn.com/dms/image/v2/D5635AQERO96Ty6cpdg/profile-framedphoto-shrink_400_400/B56Zr29CmAL8Ag-/0/1765079788280?e=1770807600&v=beta&t=IXBQnTkHsuWI_spSpMHdlYb2vLJHokpinfcUMOYyUcI"
+                    photoURL: PROFILE_PHOTO
                 }).then(() => {
                 // Profile updated!
                     const {uid,email,displayName,photoURL} = auth.currentUser;
@@ -80,7 +79,6 @@ const Login = () => {
                 // An error occurred
                 seterrorMessage(error.message); 
                 });
-                console.log(user);
                
             })
             .catch((error) => {
@@ -88,7 +86,7 @@ const Login = () => {
                 const errorMessage = error.message;
                 seterrorMessage(errorCode+"-"+errorMessage);
             });
-            console.log("Sign Up Successful");
+            
         }
     };
  
@@ -101,7 +99,7 @@ const Login = () => {
 
       {/* BG Img */}
       <div>
-        <img className='object-cover' src="https://assets.nflxext.com/ffe/siteui/vlv3/cc73e7c7-7860-4ef4-8fc8-1baf24569d2f/web/IN-en-20260126-TRIFECTA-perspective_90d714e8-acc9-4253-ab46-ca6b349c1989_large.jpg" alt="bg-img" />
+        <img className='object-cover' src={BG_IMG} alt="bg-img" />
       </div >
 
       {/* Form */}        

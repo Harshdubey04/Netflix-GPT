@@ -14,7 +14,7 @@ function App() {
   const navigate=useNavigate();
 
   useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe=onAuthStateChanged(auth, (user) => {
       if (user) {
         //Sign in user
         const {uid,email,displayName,photoURL} = user;
@@ -29,7 +29,8 @@ function App() {
         //Navigate to login page
         navigate("/");
       }
-      
+      //Unsubscribe when the component unmounts
+      return ()=>unsubscribe();
     });
   },[dispatch,navigate])
 

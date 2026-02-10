@@ -10,7 +10,17 @@
 -Implement Signin and user API
 -Create Redux Store and UserSlice
 -Implement Signout 
--Update Profile
+-Update Profil
+-UnSubscribe from the onAuthStateChange Callback
+-Add hardcoded values to the constant files
+-Register TMDB API and create teh accound get the API and the access token
+-Get the data form the now playing movies list API
+-Create a movie slice
+-Custom hook for now playing movies dat
+-Planning for main and secondary container
+-Fetch data for trailer video
+-Update store with trailer video data
+-Embed the youtube vdo and make it autoplay and mute
 
 
 

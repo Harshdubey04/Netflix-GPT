@@ -3,6 +3,7 @@ import { signOut } from 'firebase/auth';
 import React from 'react'
 import { auth } from '../Utils/Firebase';
 import { useNavigate } from 'react-router';
+import profilePicture from "../../public/profilePicture.png"
 import Error from '../Pages/Error';
 
 const BrowserHeader = () => {
@@ -13,11 +14,12 @@ const BrowserHeader = () => {
         navigate("/");
         }).catch((error) => {
         // An error happened.
-        navigate("/error")
+        // console.log(error);
+        navigate("/error");
         });
     }
   return (
-    <div className='flex justify-between py-3 bg-black/85 absolute w-full px-5 z-10 '>
+    <div className='flex justify-between py-3 bg-black/75 absolute w-full px-5 z-10 '>
         {/* Logo */}
         <div className='ml-3'>
             <img className='w-44 bg-linear-to-b from-black' 
@@ -25,9 +27,12 @@ const BrowserHeader = () => {
             alt="logo" />  
         </div>
           {/*SignOut Button*/}
-        <div className='flex gap-4 items-center'>
-            
-           
+        <div className='flex gap-4 items-center'>   
+            <div>
+                <img src={profilePicture} alt="profile-picture"
+                className='size-8 rounded'
+                />
+            </div>    
             <div>
                 <button onClick={handleSignOut}
                 className='bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded mr-5'>

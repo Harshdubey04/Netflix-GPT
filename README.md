@@ -21,6 +21,12 @@
 -Fetch data for trailer video
 -Update store with trailer video data
 -Embed the youtube vdo and make it autoplay and mute
+-Building secondary component
+-Build Movie List
+-Build Movie Card
+-TMDB IMG CDN URL
+-Custom hooks for different movie lists
+-Added random trailers on refresh
 
 
 

@@ -19,7 +19,7 @@ const BrowserHeader = () => {
         });
     }
   return (
-    <div className='flex justify-between py-3 bg-black/75 absolute w-full px-5 z-10 '>
+    <div className='flex justify-between py-4 absolute w-full px-6 z-20 bg-gradient-to-b from-black/80 to-transparent'>
         {/* Logo */}
         <div className='ml-3'>
             <img className='w-44 bg-linear-to-b from-black' 
@@ -45,5 +45,6 @@ const BrowserHeader = () => {
 }
 
 export default BrowserHeader;
+
 
 

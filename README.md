@@ -27,6 +27,11 @@
 -TMDB IMG CDN URL
 -Custom hooks for different movie lists
 -Added random trailers on refresh
+-GPT Search Page
+-GPT Search Bar
+-Multilingual feature in our app
+
+
 
 
 

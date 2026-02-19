@@ -6,7 +6,7 @@ import profilePicture from "../../public/profilePicture.png"
 import Error from '../Pages/Error';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleGptSeachView } from '../Utils/Store/gptSlice';
-import lang, { SUPPORTED_LANGUAGES } from '../Utils/languageConstants';
+import { SUPPORTED_LANGUAGES } from '../Utils/languageConstants';
 import { changeLanguage } from '../Utils/Store/configSlice';
 
 const BrowserHeader = () => {

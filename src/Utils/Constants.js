@@ -13,3 +13,6 @@ export const API_OPTIONS={
 
 export const embedURL="https://www.youtube.com/embed/";
 export const IMG_CDN_URL="https://image.tmdb.org/t/p/w500";
+
+export const OPENAI_KEY="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"; 
+

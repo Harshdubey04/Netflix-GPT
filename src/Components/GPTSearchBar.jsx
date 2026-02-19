@@ -1,10 +1,22 @@
 import React, { useRef } from "react";
 import lang from "../Utils/languageConstants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { API_OPTIONS } from "../Utils/Constants";
+import { addGptMovieResult } from "../Utils/Store/gptSlice";
 
 const GPTSearchBar = () => {
   const langKey = useSelector((store) => store.config.language);
   const searchedText = useRef(null);
+  const dispatch=useDispatch();
+  
+  const searchMovieTMDB=async (movie)=>{
+    const data=await fetch('https://api.themoviedb.org/3/search/movie?query='+movie+
+      '&include_adult=true&language=en-US&page=1',
+      API_OPTIONS)
+
+      const json=await data.json();
+      return json.results;
+  }
 
   const handleGPTSearchClick = async () => {
     const query = searchedText.current.value;
@@ -27,7 +39,7 @@ const GPTSearchBar = () => {
       messages: [
         {
           role: "user",
-          content: `Suggest 5 movies like ${query}. Return only comma separated names.`,
+          content: `Suggest 5 movies named ${query}. Return only comma separated names without any numbering in a single string.`,
         },
       ],
     }),
@@ -36,15 +48,26 @@ const GPTSearchBar = () => {
 
 const data = await response.json();
 
-// console.log("Full Response:", data);
+console.log("Full Response:", data);
 
 if (data?.choices?.length > 0) {
-  console.log(data.choices[0].message.content);
+  const gptMovies=data.choices?.[0].message?.content.trim().split(",");
+  // console.log(gptMovies);
+
+  // ['Hera Pheri', ' Dhamaal', ' Welcome', ' Golmaal', ' Andaz Apna Apna']
+  // for each movies i will search on api
+  const promiseArray=gptMovies.map((movie)=>searchMovieTMDB(movie));
+  // movieData=[promise,promise,promise,promise,promise] because it is async  function
+  const moviesData=await Promise.all(promiseArray);
+  console.log(moviesData);
+
+  dispatch(addGptMovieResult({movieName:gptMovies,movieResults:moviesData}));
+  
 }
   } catch (error) {
-    console.error("DeepSeek Error:", error);
+    console.error("Openrouter Error:", error);
   }
-  };
+};
 
   return (
     <div className="pt-[10%] flex justify-center">

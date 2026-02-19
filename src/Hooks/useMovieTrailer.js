@@ -11,9 +11,9 @@ const useMovieTrailer = (movieId) => {
         const data=await fetch("https://api.themoviedb.org/3/movie/"+movieId+"/videos?language=en-US",API_OPTIONS);
         const json=await data.json();
         const trailers=json?.results?.filter(clip=>clip?.type==="Trailer" && clip.site==="YouTube");
-        const randomIndex = Math.floor(Math.random() * trailers.length);
-        // const trailer=trailers.length?trailers[0]:json?.results[0];
-         const trailer = trailers.length?trailers[randomIndex]:json.results[0];
+        // const randomIndex = Math.floor(Math.random() * trailers.length);
+        const trailer=trailers.length?trailers[0]:json?.results[0];
+        //  const trailer = trailers.length?trailers[randomIndex]:json.results[0];
         dispatch(addTrailerVideo(trailer.key));
     }
     useEffect(()=>{

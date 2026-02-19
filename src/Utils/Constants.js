@@ -7,12 +7,11 @@ export const API_OPTIONS={
   headers: {
     accept: 'application/json',
     Authorization: 
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZjBiNDExMTVmYWRhYmE3YjNmNWM4Mjc4MDE3MDQ2MSIsIm5iZiI6MTc3MDM4MzM1OC4zNTksInN1YiI6IjY5ODVlN2ZlYmI0NzliM2UyMzYxYTU4OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6UwJ88UeXQ1BdybjDN5P-tBNCteKbXsu3P6h9WnuKyI'
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZjBiNDExMTVmYWRhYmE3YjNmNWM4Mjc4MDE3MDQ2MSIsIm5iZiI6MTc3MDM4MzM1OC4zNTksInN1YiI6IjY5ODVlN2ZlYmI0NzliM2UyMzYxYTU4OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6UwJ88UeXQ1BdybjDN5P-tBNCteKbXsu3P6h9WnuKyI'
   }
 };
 
 export const embedURL="https://www.youtube.com/embed/";
 export const IMG_CDN_URL="https://image.tmdb.org/t/p/w500";
 
-export const OPENAI_KEY="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"; 
 

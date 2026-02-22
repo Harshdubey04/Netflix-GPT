@@ -1,90 +1,100 @@
-import { signOut } from 'firebase/auth';
-import React from 'react'
-import { auth } from '../Utils/Firebase';
-import { useNavigate } from 'react-router';
-import profilePicture from "../../public/profilePicture.png"
-import Error from '../Pages/Error';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleGptSeachView } from '../Utils/Store/gptSlice';
-import { SUPPORTED_LANGUAGES } from '../Utils/languageConstants';
-import { changeLanguage } from '../Utils/Store/configSlice';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleGptSeachView, clearGptResults } from "../Utils/Store/gptSlice";
+import { signOut } from "firebase/auth";
+import { auth } from "../Utils/Firebase";
+import { useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const BrowserHeader = () => {
-    const showGptSearch=useSelector(store=>store.gpt.showGptSearch);
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
-    const handleSignOut=()=>{
-        signOut(auth).then(() => {
-        // Sign-out successful.
-        navigate("/");
-        }).catch((error) => {
-        // An error happened.
-        // console.log(error);
-        navigate("/error");
-        });
-    }
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const handleGPTSearchClick=()=>{
-        dispatch(toggleGptSeachView());
-    }
+  const handleGPTSearchClick = () => {
+    dispatch(toggleGptSeachView());
+    setMenuOpen(false);
+  };
 
-    const handleLanguageChange=(e)=>{
-        dispatch(changeLanguage(e.target.value));
-    }
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Clear GPT results when signing out
+        dispatch(clearGptResults());
+        navigate("/"); // Navigate to home
+      })
+      .catch((error) => {
+        console.error(error);
+        navigate("/error"); // Optional: navigate to an error page
+      });
+    setMenuOpen(false);
+  };
 
   return (
-    <div className='flex justify-between py-4 absolute w-full px-6 z-20 bg-gradient-to-b from-black/80 to-transparent'>
-        {/* Logo */}
+    <div className="fixed left-0 w-full bg-black/65 px-6 py-4 flex justify-between items-center bg-gradient-to-b from-black z-50">
 
-        <div className='ml-3'>
-            <img className='w-44 bg-linear-to-b from-black' 
-            src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2026-01-09/consent/87b6a5c0-0104-4e96-a291-092c11350111/019ae4b5-d8fb-7693-90ba-7a61d24a8837/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-            alt="logo" />  
+      {/* Left Section */}
+      <div className="flex items-center gap-4">
+        {/* Hamburger - Mobile Only */}
+        <button
+          className="md:hidden text-white text-2xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
+        <h1 className="text-red-600 text-2xl md:text-3xl font-extrabold tracking-wide">
+          NETFLIX
+        </h1>
+      </div>
+
+      {/* Desktop Buttons */}
+      <div className="hidden md:flex items-center gap-4">
+        <button
+          onClick={handleGPTSearchClick}
+          className="bg-pink-600 hover:bg-pink-700 px-5 py-2 rounded-md text-white font-semibold transition duration-200"
+        >
+          {showGptSearch ? "Home" : "GPT Search"}
+        </button>
+
+        <div className="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center text-white text-lg">
+          😊
         </div>
 
-          {/*SignOut Button*/}
-        <div className='flex gap-4 items-center'>
-            {showGptSearch && <div>
-                <select name="language" id="language" 
-                onChange={handleLanguageChange}
-                    className='px-4 py-1 text-white bg-black border border-gray-400 rounded '
-                >
-                    {
-                        SUPPORTED_LANGUAGES.map((language)=>(<option key={language.identifier} value={language.identifier}>{language.name}</option>))
-                    }
-                </select>
-           </div>}
+        <button
+          onClick={handleSignOut}
+          className="bg-red-600 hover:bg-red-700 px-5 py-2 rounded-md text-white font-semibold transition duration-200"
+        >
+          Sign Out
+        </button>
+      </div>
 
-                {/* GPT Search */}
-            <div>
-                <button 
-                className='p-2 m-2 border border-black 
-                text-white bg-pink-400 cursor-pointer rounded active:scale-95 hover:shadow-[0_0_15px_#ec4899]
-                transition-all duration-300'
-                onClick={handleGPTSearchClick}
-                >
-                {showGptSearch?"Browse Movies":"GPT Search"}    
-                </button>
-            </div>
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <div className="absolute top-20 right-6 bg-black border border-gray-700 rounded-lg shadow-lg flex flex-col gap-4 px-6 py-5 md:hidden">
+          <button
+            onClick={handleGPTSearchClick}
+            className="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-md text-white font-semibold"
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
 
-            <div>
-                <img src={profilePicture} alt="profile-picture"
-                className='size-8 rounded'
-                />
-            </div>    
-            <div>
-                <button onClick={handleSignOut}
-                className='bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded mr-5'>
-                    Sign Out
-                </button>
-            </div>
-        </div>          
+          <div className="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center text-white text-lg">
+            😊
+          </div>
+
+          <button
+            onClick={handleSignOut}
+            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md text-white font-semibold"
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default BrowserHeader;
-
-
-

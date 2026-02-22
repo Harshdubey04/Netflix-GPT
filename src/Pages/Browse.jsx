@@ -1,6 +1,5 @@
 import React from 'react'
 import BrowserHeader from '../Components/BrowserHeader'
-import { API_OPTIONS } from '../Utils/Constants'
 import useNowPlayingMovies from '../Hooks/useNowPlayingMovies'
 import MainContainer from '../Components/MainContainer'
 import SecondaryContainer from '../Components/SecondaryContainer'
@@ -11,37 +10,27 @@ import { useSelector } from 'react-redux'
 import GPTSearch from '../Components/GPTSearch'
 
 const Browse = () => {
-  const showGptSearch=useSelector(store=>store.gpt.showGptSearch);
+  const showGptSearch = useSelector(store => store.gpt.showGptSearch);
+
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
 
-  
   return (
-    <div>
+    <div className="bg-black min-h-screen w-full overflow-x-hidden">
       <BrowserHeader />
-      {
-        showGptSearch?(
-          <GPTSearch />
-        ):(
-          <>
-            <MainContainer />
-            <SecondaryContainer />
-          </>
-        )
-      }      
-      {/* 
-        MainContainer
-          Video Background
-          video title
-        Secondary Container
-         -Movie lists*m
-          -cards*n
-      */}
+
+      {showGptSearch ? (
+        <GPTSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   )
 }
 
 export default Browse
-

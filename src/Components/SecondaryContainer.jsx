@@ -8,19 +8,32 @@ const SecondaryContainer = () => {
   if (!movies.nowPlayingMovies) return null;
 
   return (
-    <div className="bg-black w-full">
+    <div className="bg-black w-full relative z-10 mt-0 md:-mt-32">
+      
+      <MovieList
+        title="Now Playing"
+        movies={movies.nowPlayingMovies}
+      />
 
-     
-      <div className="-mt-40 relative z-20">
-        <MovieList
-          title="Now Playing"
-          movies={movies.nowPlayingMovies}
-        />
-      </div>   
-      <MovieList title="Popular" movies={movies.popularMovies} />
-      <MovieList title="Trending" movies={movies.nowPlayingMovies} />
-      <MovieList title="Top Rated" movies={movies.topRatedMovies} />
-      <MovieList title="Upcoming" movies={movies.upcomingMovies} />
+      <MovieList
+        title="Popular"
+        movies={movies.popularMovies}
+      />
+
+      <MovieList
+        title="Trending"
+        movies={movies.nowPlayingMovies}
+      />
+
+      <MovieList
+        title="Top Rated"
+        movies={movies.topRatedMovies}
+      />
+
+      <MovieList
+        title="Upcoming"
+        movies={movies.upcomingMovies}
+      />
     </div>
   );
 };

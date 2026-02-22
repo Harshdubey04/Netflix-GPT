@@ -21,12 +21,6 @@ const Header = () => {
                     <option value="हिन्दी">हिन्दी</option>
                 </select>
            </div>
-           {/* Button
-            <div>
-                <button className='bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded mr-5'>
-                    Sign In
-                </button>
-            </div> */}
         </div>          
     </div>
   )

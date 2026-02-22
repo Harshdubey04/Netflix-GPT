@@ -5,7 +5,7 @@ const lang={
         placeholder:"What would you like to watch today?",
     },
     hindi:{
-        search:"खोज",
+        search:"खोजे",
         placeholder:"आज आप क्या देखना चाहेंगे?",
     },
     spanish:{

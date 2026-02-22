@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { addPopularMovies } from '../Utils/Store/movieSlice';

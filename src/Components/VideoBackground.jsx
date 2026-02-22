@@ -10,7 +10,7 @@ const VideoBackground = ({ movieId }) => {
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
       <iframe
-        className="w-full h-full scale-125"
+        className="w-full h-full object-cover scale-125 md:scale-110"
         src={
           embedURL +
           trailerKey +

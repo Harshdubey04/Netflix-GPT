@@ -3,17 +3,16 @@ import { useSelector } from "react-redux";
 import GPTMovieResults from "./GPTMovieResults";
 
 const GPTMovieSuggestions = () => {
-  const { movieName, gptSearchMovies } = useSelector(
+  const { movieName, gptSearchMovies, loading } = useSelector(
     (store) => store.gpt
   );
 
-  if (!movieName || !gptSearchMovies) return null;
-
   return (
-    <div className="bg-black/80 pt-6 pb-10">
+    <div className="mt-10 bg-black/80 backdrop-blur-md pb-16">
       <GPTMovieResults
         movieName={movieName}
         gptSearchMovies={gptSearchMovies}
+        loading={loading}
       />
     </div>
   );
